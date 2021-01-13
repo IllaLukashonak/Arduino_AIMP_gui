@@ -2,6 +2,8 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
+#include "rus_letters.h"
+
 LiquidCrystal_I2C lcd(0x3F, 16, 2); // Указываем I2C адрес (наиболее распространенное значение), а также параметры экрана (в случае LCD 1602 - 2 строки по 16 символов в каждой
 
 char text[128] = "\0";
@@ -16,8 +18,7 @@ void setup()
     lcd.setCursor(0, 0);             // Установка курсора в начало первой строки
     lcd.print("Hello");              // Набор текста на первой строке
     lcd.setCursor(0, 1);             // Установка курсора в начало второй строки
-    lcd.print("ŁIS");                // Набор текста на второй строке
-  
+    lcd.print("ЛИВ");                // Набор текста на второй строке
 }
 void loop()
 {
@@ -26,7 +27,7 @@ void loop()
         // считываем байт
         text[i] = (char)Serial.read();
     }
-  
+    
     if (text[0] != '\0' || flag == false) {//Если что-то считали
         flag = true;
         Serial.println (text);
